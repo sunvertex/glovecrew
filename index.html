@@ -1,0 +1,1817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glove Crew | Professional Home Services in Calgary</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #10b981;
+            --primary-dark: #059669;
+            --primary-light: #34d399;
+            --accent-color: #fbbf24;
+            --accent-dark: #f59e0b;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --border-color: #e5e7eb;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header */
+        header {
+            background: white;
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 0.5rem 0;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .phone-link {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.7rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phone-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .phone-link:hover::before {
+            left: 100%;
+        }
+
+        .phone-link:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            text-align: center;
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveBackground 20s linear infinite;
+        }
+
+        @keyframes moveBackground {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(50px, 50px);
+            }
+        }
+
+        .hero > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            animation: slideInUp 0.8s ease-out;
+            line-height: 1.2;
+        }
+
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+            list-style: none;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .hero-features li:before {
+            content: "✓ ";
+            color: #4ade80;
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+
+        .hero-price {
+            font-size: 1.5rem;
+            margin: 2rem 0;
+            font-weight: 600;
+            animation: slideInUp 1.2s ease-out;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            display: inline-block;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            animation: slideInUp 1.4s ease-out;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Division Selection */
+        .division-selection {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .division-selection h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .division-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .division-card {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2.5rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .division-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 0;
+        }
+
+        .division-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .division-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.3);
+            border-color: var(--primary-color);
+        }
+
+        .division-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .division-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+
+        .division-card:hover h3 {
+            color: var(--primary-color);
+        }
+
+        .division-card p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .division-card ul {
+            list-style: none;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .division-card ul li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .division-card:hover ul li {
+            transform: translateX(5px);
+        }
+
+        .division-card ul li:before {
+            content: "✓";
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-right: 0.5rem;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Services Section */
+        .services-section {
+            background: white;
+            padding: 5rem 2rem;
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .services-container h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 3.5rem;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--bg-light);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-color);
+            box-shadow: 0 12px 30px rgba(16, 185, 129, 0.15);
+            background: white;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+
+        .service-card:hover h3 {
+            color: var(--primary-color);
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            margin-bottom: 1.2rem;
+            line-height: 1.7;
+        }
+
+        .service-card ul {
+            list-style: none;
+            color: var(--text-light);
+        }
+
+        .service-card ul li {
+            margin-bottom: 0.7rem;
+            padding-left: 1.5rem;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover ul li {
+            transform: translateX(5px);
+        }
+
+        .service-card ul li:before {
+            content: "•";
+            color: var(--primary-color);
+            margin-right: 0.5rem;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Why Choose Us */
+        .why-choose {
+            background: var(--bg-light);
+            padding: 4rem 2rem;
+        }
+
+        .why-choose-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .why-choose h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-dark);
+        }
+
+        .why-choose-text {
+            text-align: center;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .why-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .why-feature {
+            text-align: center;
+        }
+
+        .why-feature h4 {
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .why-feature p {
+            color: var(--text-light);
+        }
+
+        /* Areas Served */
+        .areas-served {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .areas-served h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .areas-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            max-width: 600px;
+            margin: 1rem auto;
+        }
+
+        .area-badge {
+            background: white;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-weight: 600;
+            color: var(--primary-color);
+            border: 1px solid var(--border-color);
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: white;
+            padding: 5rem 2rem;
+        }
+
+        .how-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .how-container h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 4rem;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            position: relative;
+        }
+
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-light), var(--primary-color), var(--primary-light));
+            z-index: 0;
+        }
+
+        .step {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-10px);
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .step:hover .step-number {
+            transform: scale(1.1) rotate(360deg);
+            box-shadow: 0 12px 30px rgba(16, 185, 129, 0.5);
+        }
+
+        .step-number::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid var(--primary-color);
+            opacity: 0;
+            animation: pulse-ring 2s infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .step p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Quote Form */
+        .quote-section {
+            background: linear-gradient(135deg, var(--bg-light) 0%, #e0f2fe 100%);
+            padding: 5rem 2rem;
+        }
+
+        .quote-container {
+            max-width: 650px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .quote-container h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .quote-subtext {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: var(--bg-light);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 1.2rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .submit-btn:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        .form-disclaimer {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-top: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #9ca3af;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero {
+                padding: 4rem 1.5rem;
+            }
+
+            .hero-features {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+
+            .hero-price {
+                font-size: 1.2rem;
+                padding: 0.8rem 1.5rem;
+            }
+
+            .areas-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            nav {
+                padding: 0 1rem;
+            }
+
+            .division-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps::before {
+                display: none;
+            }
+
+            .steps {
+                gap: 2rem;
+            }
+
+            .division-selection h2,
+            .services-container h2,
+            .how-container h2,
+            .quote-container h2 {
+                font-size: 2rem;
+            }
+
+            .why-choose h2 {
+                font-size: 2rem;
+            }
+
+            .quote-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .phone-link {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .btn {
+                padding: 0.8rem 2rem;
+                font-size: 0.95rem;
+            }
+
+            .division-card {
+                padding: 1.5rem;
+            }
+
+            .service-card {
+                padding: 1.5rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo" onclick="showPage('home')" style="display: flex; align-items: center; gap: 0.5rem;">
+                <img src="./logo.jpg" alt="Glove Crew Logo" style="height: 90px; cursor: pointer;">
+            </div>
+            <a href="tel:18006084432" class="phone-link">Call us: 1 800 608 4432</a>
+        </nav>
+    </header>
+
+    <!-- Homepage -->
+    <div id="home" class="page active">
+        <section class="hero">
+            <h1>Premium home services for Calgary homes and businesses</h1>
+            <ul class="hero-features">
+                <li>Professional Services</li>
+                <li>Reliable</li>
+                <li>Satisfaction guaranteed</li>
+            </ul>
+            <p class="hero-price">Our services start at just $149.99</p>
+            <div class="hero-buttons">
+                <a href="#quote" class="btn btn-primary " onclick="scrollToQuote()">Get a free quote</a>
+                <a href="#services" class="btn btn-secondary" onclick="scrollToServices()">Explore services</a>
+            </div>
+        </section>
+
+        <div id="services" class="division-selection">
+            <h2>Our Services</h2>
+            <div class="division-cards">
+                <div class="division-card" onclick="showPage('cleaning')">
+                    <h3>Cleaning Services</h3>
+                    <p>Professional cleaning solutions for your home or office.</p>
+                    <ul>
+                        <li>Move-In/Move-Out cleaning</li>
+                        <li>Deep cleaning services</li>
+                        <li>Carpet cleaning</li>
+                    </ul>
+                    <button class="btn btn-primary">View Cleaning Services</button>
+                </div>
+
+                <div class="division-card" onclick="showPage('junk')">
+                    <h3>Junk Removal</h3>
+                    <p>Fast and efficient junk removal services.</p>
+                    <ul>
+                        <li>Furniture & appliance removal</li>
+                        <li>Estate cleanouts</li>
+                        <li>Same-day service available</li>
+                    </ul>
+                    <button class="btn btn-primary">View Junk Removal</button>
+                </div>
+
+                <div class="division-card" onclick="showPage('renovations')">
+                    <h3>Renovations</h3>
+                    <p>Transform your space with expert renovations.</p>
+                    <ul>
+                        <li>Kitchen & bathroom remodeling</li>
+                        <li>Flooring installation</li>
+                        <li>Custom carpentry</li>
+                    </ul>
+                    <button class="btn btn-primary">View Renovations</button>
+                </div>
+            </div>
+        </div>
+
+        <section class="why-choose">
+            <div class="why-choose-container">
+                <h2>Why Calgary chooses us</h2>
+                <p class="why-choose-text">We're a local Calgary team committed to premium results, clear communication, and dependable service. Every job is backed by our satisfaction guarantee.</p>
+                <div class="why-features">
+                    <div class="why-feature">
+                        <h4>✓ Background-checked, trained professionals</h4>
+                    </div>
+                    <div class="why-feature">
+                        <h4>✓ Safe products for families and pets</h4>
+                    </div>
+                    <div class="why-feature">
+                        <h4>✓ Transparent, upfront pricing</h4>
+                    </div>
+                </div>
+
+                <div class="areas-served">
+                    <h3>Areas we serve</h3>
+                    <p>All Calgary communities and nearby areas.</p>
+                    <div class="areas-grid">
+                        <div class="area-badge">NW</div>
+                        <div class="area-badge">NE</div>
+                        <div class="area-badge">SW</div>
+                        <div class="area-badge">SE</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="how-it-works">
+            <div class="how-container">
+                <h2>How it works</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Tell us about your needs</h3>
+                        <p>Share the details and your preferred date/time.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Get a fast, fair quote</h3>
+                        <p>We'll confirm scope and provide transparent pricing.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Enjoy professional service</h3>
+                        <p>Relax while we deliver five-star results, guaranteed.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="quote" class="quote-section">
+            <div class="quote-container">
+                <h2>Request your free quote</h2>
+                <p class="quote-subtext">Prefer to talk? <a href="tel:+18259453500" style="color: var(--primary-color); font-weight: 600;">Call us: +1 (825) 945 3500</a></p>
+                <form>
+                    <div class="form-group">
+                        <label>Full name</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Service</label>
+                        <select required>
+                            <option value="">Select a service</option>
+                            <option>Cleaning Services</option>
+                            <option>Junk Removal</option>
+                            <option>Renovations</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Address / Area</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Details</label>
+                        <textarea placeholder="Tell us more about your project..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send request</button>
+                    <p class="form-disclaimer">By submitting, you agree to be contacted about your request.</p>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- Cleaning Services Page -->
+    <div id="cleaning" class="page">
+        <section class="hero" style="background: linear-gradient(135deg, #10b981 0%, #34d399 100%);">
+            <h1>Spotless cleaning for Calgary homes and offices</h1>
+            <ul class="hero-features">
+                <li>Professional Cleaning Services</li>
+                <li>Reliable</li>
+                <li>Satisfaction guaranteed</li>
+            </ul>
+            <p class="hero-price">Our cleaning services starts at just $149.99</p>
+            <div class="hero-buttons">
+                <a href="#quote" class="btn btn-primary " onclick="showPage('home'); setTimeout(scrollToQuote, 100)">Get a free quote</a>
+                <a href="#services-detail" class="btn btn-secondary" onclick="scrollToServices()">Explore services</a>
+            </div>
+        </section>
+
+        <section id="services-detail" class="services-section">
+            <div class="services-container">
+                <h2>Our Cleaning Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>Move-In/Move-Out Cleaning</h3>
+                        <p>Make your move effortless with a top-to-bottom clean that leaves spaces ready for inspection or move-in day.</p>
+                        <ul>
+                            <li>Inside appliances and cabinets</li>
+                            <li>Baseboards, doors, and trim</li>
+                            <li>Bathrooms and kitchens detailed</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h3>Deep Cleaning</h3>
+                        <p>A meticulous clean targeting built-up grime and hard-to-reach areas to reset your space.</p>
+                        <ul>
+                            <li>High/low dusting and vents</li>
+                            <li>Tile/grout attention</li>
+                            <li>Detailed kitchen and bath</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h3>Basic Cleaning</h3>
+                        <p>Perfect for recurring upkeep. Keep your home consistently fresh and tidy.</p>
+                        <ul>
+                            <li>Surfaces, floors, and mirrors</li>
+                            <li>Kitchen and bathroom refresh</li>
+                            <li>Trash removal and tidy-up</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h3>Carpet Cleaning</h3>
+                        <p>Lift stains, odors, and allergens with professional-grade carpet care and extraction.</p>
+                        <ul>
+                            <li>Spot and stain treatment</li>
+                            <li>Deep hot-water extraction</li>
+                            <li>Fast-dry methods available</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="why-choose">
+            <div class="why-choose-container">
+                <h2>Why Calgary chooses us</h2>
+                <p class="why-choose-text">We're a local Calgary team committed to premium results, clear communication, and dependable service. Every clean is backed by our satisfaction guarantee.</p>
+                <div class="why-features">
+                    <div class="why-feature">
+                        <h4>✓ Background-checked, trained cleaners</h4>
+                    </div>
+                    <div class="why-feature">
+                        <h4>✓ Green products safe for families and pets</h4>
+                    </div>
+                    <div class="why-feature">
+                        <h4>✓ Transparent, upfront pricing</h4>
+                    </div>
+                </div>
+
+                <div class="areas-served">
+                    <h3>Areas we serve</h3>
+                    <p>All Calgary communities and nearby areas.</p>
+                    <div class="areas-grid">
+                        <div class="area-badge">NW</div>
+                        <div class="area-badge">NE</div>
+                        <div class="area-badge">SW</div>
+                        <div class="area-badge">SE</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="how-it-works">
+            <div class="how-container">
+                <h2>How it works</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Tell us about your space</h3>
+                        <p>Share the size, condition, and your preferred date/time.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Get a fast, fair quote</h3>
+                        <p>We'll confirm scope and provide transparent pricing.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Enjoy a sparkling clean</h3>
+                        <p>Relax while we deliver a five-star clean, guaranteed.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="quote-section">
+            <div class="quote-container">
+                <h2>Request your free quote</h2>
+                <p class="quote-subtext">Prefer to talk? <a href="tel:+18259453500" style="color: var(--primary-color); font-weight: 600;">Call us: +1 (825) 945 3500</a></p>
+                <form>
+                    <div class="form-group">
+                        <label>Full name</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Service</label>
+                        <select required>
+                            <option value="">Select a service</option>
+                            <option selected>Move-In/Move-Out Cleaning</option>
+                            <option>Deep Cleaning</option>
+                            <option>Basic Cleaning</option>
+                            <option>Carpet Cleaning</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Address / Area</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Details</label>
+                        <textarea placeholder="Tell us more about your cleaning needs..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send request</button>
+                    <p class="form-disclaimer">By submitting, you agree to be contacted about your request.</p>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- Junk Removal Page -->
+    <div id="junk" class="page">
+        <section class="hero" style="background: linear-gradient(135deg, #059669 0%, #047857 100%);">
+            <h1>Fast junk removal for Calgary homes and businesses</h1>
+            <ul class="hero-features">
+                <li>Same-Day Service Available</li>
+                <li>Eco-Friendly Disposal</li>
+                <li>Satisfaction guaranteed</li>
+            </ul>
+            <div class="hero-buttons">
+                <a href="#quote" class="btn btn-primary " onclick="showPage('home'); setTimeout(scrollToQuote, 100)">Get a free quote</a>
+                <a href="#services-detail" class="btn btn-secondary" onclick="scrollToServices()">What we remove</a>
+            </div>
+        </section>
+
+        <section id="services-detail" class="services-section">
+            <div class="services-container">
+                <h2>What We Remove</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>Furniture Removal</h3>
+                        <p>Old couches, mattresses, tables, and chairs - we'll haul it all away.</p>
+                        <ul>
+                            <li>Living room furniture</li>
+                            <li>Bedroom sets</li>
+                            <li>Office furniture</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h3>Appliance Disposal</h3>
+                        <p>Refrigerators, washers, dryers, and more. Proper disposal guaranteed.</p>
+                        <ul>
+                            <li>Large appliances</li>
+                            <li>Small appliances</li>
+                            <li>Eco-friendly recycling</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h3>Estate Cleanouts</h3>
+                        <p>Complete property cleanout services for estates and foreclosures.</p>
+                        <ul>
+                            <li>Full-home cleanouts</li>
+                            <li>Donation coordination</li>
+                            <li>Respectful service</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h3>Garage Cleanouts</h3>
+                        <p>Reclaim your garage space. We remove years of accumulated items.</p>
+                        <ul>
+                            <li>Old tools and equipment</li>
+                            <li>Storage items</li>
+                            <li>Complete cleanout</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h3>E-Waste Recycling</h3>
+                        <p>Responsible disposal of electronics and e-waste materials.</p>
+                        <ul>
+                            <li>Computers and monitors</li>
+                            <li>TVs and electronics</li>
+                            <li>Certified recycling</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h3>Construction Debris</h3>
+                        <p>Remove construction waste, lumber, drywall, and renovation debris.</p>
+                        <ul>
+                            <li>Demolition cleanup</li>
+                            <li>Building materials</li>
+                            <li>Renovation waste</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="why-choose">
+            <div class="why-choose-container">
+                <h2>Why Calgary chooses us</h2>
+                <p class="why-choose-text">We're a local Calgary team committed to fast service, responsible disposal, and dependable hauling. Every job is backed by our satisfaction guarantee.</p>
+                <div class="why-features">
+                    <div class="why-feature">
+                        <h4>✓ Same-day service available</h4>
+                    </div>
+                    <div class="why-feature">
+                        <h4>✓ Eco-friendly disposal practices</h4>
+                    </div>
+                    <div class="why-feature">
+                        <h4>✓ Transparent, upfront pricing</h4>
+                    </div>
+                </div>
+
+                <div class="areas-served">
+                    <h3>Areas we serve</h3>
+                    <p>All Calgary communities and nearby areas.</p>
+                    <div class="areas-grid">
+                        <div class="area-badge">NW</div>
+                        <div class="area-badge">NE</div>
+                        <div class="area-badge">SW</div>
+                        <div class="area-badge">SE</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="how-it-works">
+            <div class="how-container">
+                <h2>How it works</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Tell us what needs to go</h3>
+                        <p>Share photos or describe the items and your preferred pickup time.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Get a fast, fair quote</h3>
+                        <p>We'll provide transparent pricing based on volume and items.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>We haul it away</h3>
+                        <p>Relax while we load and remove everything, guaranteed.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="quote-section">
+            <div class="quote-container">
+                <h2>Request your free quote</h2>
+                <p class="quote-subtext">Prefer to talk? <a href="tel:+18259453500" style="color: var(--primary-color); font-weight: 600;">Call us: +1 (825) 945 3500</a></p>
+                <form>
+                    <div class="form-group">
+                        <label>Full name</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Service</label>
+                        <select required>
+                            <option value="">Select a service</option>
+                            <option selected>Junk Removal</option>
+                            <option>Furniture Removal</option>
+                            <option>Appliance Disposal</option>
+                            <option>Estate Cleanout</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Address / Area</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Details</label>
+                        <textarea placeholder="Tell us what needs to be removed..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send request</button>
+                    <p class="form-disclaimer">By submitting, you agree to be contacted about your request.</p>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- Renovations Page -->
+    <div id="renovations" class="page">
+        <section class="hero" style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);">
+            <h1>Expert renovations for Calgary homes</h1>
+            <ul class="hero-features">
+                <li>Quality Craftsmanship</li>
+                <li>Licensed & Insured</li>
+                <li>Satisfaction guaranteed</li>
+            </ul>
+            <p class="hero-price">Free consultations and detailed estimates</p>
+            <div class="hero-buttons">
+                <a href="#quote" class="btn btn-primary " onclick="showPage('home'); setTimeout(scrollToQuote, 100)">Get a free quote</a>
+                <a href="#services-detail" class="btn btn-secondary" onclick="scrollToServices()">View services</a>
+            </div>
+        </section>
+
+        <section id="services-detail" class="services-section">
+            <div class="services-container">
+                <h2>Renovation Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>Kitchen Remodeling</h3>
+                        <p>Custom kitchen designs that blend functionality with beautiful aesthetics.</p>
+                        <ul>
+                            <li>Cabinet installation</li>
+                            <li>Countertop replacement</li>
+                            <li>Complete kitchen makeovers</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h3>Bathroom Renovations</h3>
+                        <p>Create your dream bathroom with modern fixtures and expert installation.</p>
+                        <ul>
+                            <li>Tile and flooring</li>
+                            <li>Vanity and fixtures</li>
+                            <li>Full bathroom remodels</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h3>Basement Finishing</h3>
+                        <p>Turn your basement into usable living space - perfect for entertainment or extra bedrooms.</p>
+                        <ul>
+                            <li>Framing and drywall</li>
+                            <li>Flooring installation</li>
+                            <li>Complete finishing</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h3>Flooring Installation</h3>
+                        <p>Hardwood, tile, laminate, and carpet installation by experienced professionals.</p>
+                        <ul>
+                            <li>Hardwood flooring</li>
+                            <li>Tile and laminate</li>
+                            <li>Carpet installation</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h3>Painting Services</h3>
+                        <p>Interior and exterior painting to refresh and protect your home.</p>
+                        <ul>
+                            <li>Interior painting</li>
+                            <li>Exterior painting</li>
+                            <li>Color consultation</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h3>Custom Carpentry</h3>
+                        <p>Built-in shelving, custom cabinetry, and woodwork tailored to your needs.</p>
+                        <ul>
+                            <li>Built-in shelving</li>
+                            <li>Custom cabinetry</li>
+                            <li>Trim and molding</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="why-choose">
+            <div class="why-choose-container">
+                <h2>Why Calgary chooses us</h2>
+                <p class="why-choose-text">We're a local Calgary team committed to quality workmanship, clear communication, and projects completed on time and on budget. Every renovation is backed by our satisfaction guarantee.</p>
+                <div class="why-features">
+                    <div class="why-feature">
+                        <h4>✓ Licensed and insured contractors</h4>
+                    </div>
+                    <div class="why-feature">
+                        <h4>✓ Quality materials and craftsmanship</h4>
+                    </div>
+                    <div class="why-feature">
+                        <h4>✓ Transparent, detailed estimates</h4>
+                    </div>
+                </div>
+
+                <div class="areas-served">
+                    <h3>Areas we serve</h3>
+                    <p>All Calgary communities and nearby areas.</p>
+                    <div class="areas-grid">
+                        <div class="area-badge">NW</div>
+                        <div class="area-badge">NE</div>
+                        <div class="area-badge">SW</div>
+                        <div class="area-badge">SE</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="how-it-works">
+            <div class="how-container">
+                <h2>How it works</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Free consultation</h3>
+                        <p>We'll visit your space to discuss your vision and needs.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Detailed estimate</h3>
+                        <p>Receive a comprehensive quote with timeline and materials.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Expert renovation</h3>
+                        <p>Our team brings your vision to life with quality craftsmanship.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="quote-section">
+            <div class="quote-container">
+                <h2>Request your free consultation</h2>
+                <p class="quote-subtext">Prefer to talk? <a href="tel:+18259453500" style="color: var(--primary-color); font-weight: 600;">Call us: +1 (825) 945 3500</a></p>
+                <form>
+                    <div class="form-group">
+                        <label>Full name</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Service</label>
+                        <select required>
+                            <option value="">Select a service</option>
+                            <option selected>Renovations</option>
+                            <option>Kitchen Remodeling</option>
+                            <option>Bathroom Renovations</option>
+                            <option>Basement Finishing</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Address / Area</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Details</label>
+                        <textarea placeholder="Tell us about your renovation project..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send request</button>
+                    <p class="form-disclaimer">By submitting, you agree to be contacted about your request.</p>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="logo"><img src="./logo.jpg" alt="Glove Crew Logo" style="height: 50px; cursor: pointer;"></div>
+                <p>Serving Calgary and nearby areas.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <a href="tel:+18259453500">+1 (825) 945 3500</a>
+                <a href="mailto:quotes@glovecrew.com">quotes@glovecrew.com</a>
+                <a href="https://www.glovecrew.com">www.glovecrew.com</a>
+            </div>
+            <div class="footer-section">
+                <h4>Quick links</h4>
+                <a href="#" onclick="showPage('home'); scrollToServices(); return false;">Services</a>
+                <a href="#" onclick="showPage('cleaning'); return false;">Cleaning</a>
+                <a href="#" onclick="showPage('junk'); return false;">Junk Removal</a>
+                <a href="#" onclick="showPage('renovations'); return false;">Renovations</a>
+                <a href="#" onclick="showPage('home'); setTimeout(scrollToQuote, 100); return false;">Get a quote</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Glove Crew. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            const selectedPage = document.getElementById(pageId);
+            if (selectedPage) {
+                selectedPage.classList.add('active');
+                window.scrollTo(0, 0);
+                
+                // Re-trigger scroll animations for new page
+                setTimeout(() => {
+                    observeElements();
+                }, 100);
+            }
+        }
+
+        function scrollToQuote() {
+            const quoteSection = document.querySelector('.quote-section');
+            if (quoteSection) {
+                quoteSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function scrollToServices() {
+            const servicesSection = document.querySelector('#services, #services-detail');
+            if (servicesSection) {
+                servicesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Scroll animations
+        function observeElements() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            // Observe all cards and sections
+            document.querySelectorAll('.division-card, .service-card, .step, .why-feature').forEach(el => {
+                el.classList.add('animate-on-scroll');
+                observer.observe(el);
+            });
+        }
+
+        // Header scroll effect
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // Form validation and animation
+        document.addEventListener('DOMContentLoaded', () => {
+            observeElements();
+
+            // Add focus animations to form inputs
+            const inputs = document.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.style.transform = 'scale(1.01)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.style.transform = 'scale(1)';
+                });
+            });
+
+            // Animate division cards on hover
+            const divisionCards = document.querySelectorAll('.division-card');
+            divisionCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.zIndex = '10';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.zIndex = '1';
+                });
+            });
+
+            // Add ripple effect to buttons
+            const buttons = document.querySelectorAll('.btn, .submit-btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.cssText = `
+                        position: absolute;
+                        width: ${size}px;
+                        height: ${size}px;
+                        border-radius: 50%;
+                        background: rgba(255, 255, 255, 0.6);
+                        left: ${x}px;
+                        top: ${y}px;
+                        pointer-events: none;
+                        transform: scale(0);
+                        animation: ripple-animation 0.6s ease-out;
+                    `;
+                    
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => ripple.remove(), 600);
+                });
+            });
+
+            // Add CSS for ripple animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes ripple-animation {
+                    to {
+                        transform: scale(4);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+
+        // Parallax effect on hero
+        window.addEventListener('scroll', () => {
+            const hero = document.querySelector('.hero');
+            if (hero && window.pageYOffset < window.innerHeight) {
+                const scrolled = window.pageYOffset;
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Stagger animation for service cards
+        window.addEventListener('load', () => {
+            const cards = document.querySelectorAll('.service-card, .division-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+</body>
+</html>
